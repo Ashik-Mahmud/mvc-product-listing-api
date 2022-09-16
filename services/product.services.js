@@ -14,3 +14,8 @@ exports.getAllProducts = async(limit) => {
 exports.updateProductById = async(id, data) => {
     return await productModel.findByIdAndUpdate(id, data, {new: true, runValidators: true})
 }
+
+/* Delete product by ID */
+exports.deleteProductById = async(id) => {
+    return await productModel.findByIdAndDelete(id)
+}

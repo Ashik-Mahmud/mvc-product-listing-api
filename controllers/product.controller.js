@@ -1,4 +1,4 @@
-const { addNewProduct, getAllProducts, updateProductById } = require("../services/product.services");
+const { addNewProduct, getAllProducts, updateProductById, deleteProductById } = require("../services/product.services");
 
 const saveProduct =  async(req, res, next) => {
 
@@ -60,5 +60,22 @@ const updateProduct = async(req, res, next) => {
     }
 }
 
+const deleteProduct = async(req, res, next) => {
+    try {
+        const id = req.params.id;
+        const product = await deleteProductById(id);
+        res.send({
+            success: true,
+            message: "Deleted Product",
+            data: product
+        })
+    } catch (error) {
+        res.send({
+            success: false,
+            message: error.message
+        })
+    }
+}
 
-module.exports = { saveProduct, getProduct, updateProduct }
+
+module.exports = { saveProduct, getProduct, updateProduct,deleteProduct }
